@@ -2,12 +2,19 @@ body {
   font-family: "Google Sans", arial, sans-serif;
 }
 
-.weather-body {
+.whole-page {
   max-width: 600px;
+  margin: 50px auto;
+}
+
+.weather-body {
   border: 5px solid #eeeeee;
   border-radius: 7px;
   padding: 30px;
-  margin: 50px auto;
+}
+
+.main-weather-info {
+  margin-bottom: 20px;
 }
 
 h1 {
@@ -15,6 +22,27 @@ h1 {
   font-size: 22px;
   font-weight: 400;
   margin-bottom: 0;
+}
+
+.left-float img {
+    margin-right: 10px;
+    height: 70px;
+    width: 60px;
+}
+
+.left-float strong {
+font-size: 48px;
+font-weight: 400;
+letter-spacing: normal;
+position: relative;
+    top: 5px;
+}
+
+.left-float .temp-sighn {
+    font-size: 16px;
+    position: relative;
+    top: -20px;
+
 }
 
 ul {

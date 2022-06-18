@@ -16,33 +16,43 @@
   </head>
   <body>
     <div class="container">
-      <div class="weather-body">
-        <h1>Kyiv</h1>
-        <ul>
-          <li>Friday 21:00</li>
-          <li>Cloudy</li>
-        </ul>
-        <div class="row">
-          <div class="col-6">
-            <img
-              src="https://ssl.gstatic.com/onebox/weather/64/cloudy.png"
-              alt="Cloudy"
-            />
-            16˚C | F
-          </div>
-          <div class="col-6">
-            <ul>
-              <li>Precipitation: 0%</li>
-              <li>Humidity: 73%</li>
-              <li>Wind: 2km/h</li>
-            </ul>
+      <div class="whole-page">
+        <div class="weather-body">
+            <div class="main-weather-info">
+          <h1>Kyiv</h1>
+          <ul>
+            <li>Friday 21:00</li>
+            <li>Cloudy</li>
+</div>
+
+          </ul>
+          <div class="row">
+            <div class="col-6">
+                <div class="left-float">
+              <img
+                src="https://ssl.gstatic.com/onebox/weather/64/cloudy.png"
+                alt="Cloudy"
+              />
+              <strong>16</strong>
+                <span class="temp-sighn">˚C | <a href="#">F</a>
+                </span>
+              </div>
+            </div>
+
+            <div class="col-6">
+              <ul>
+                <li>Precipitation: 0%</li>
+                <li>Humidity: 73%</li>
+                <li>Wind: 2km/h</li>
+              </ul>
+            </div>
           </div>
         </div>
+        <small>
+          <a href="https://github.com/somat-ra/WeatherShukh">Open-source</a>
+          code by Alina Shukh
+        </small>
       </div>
-      <small>
-        <a href="https://github.com/somat-ra/WeatherShukh">Open-source</a> code
-        by Alina Shukh
-      </small>
     </div>
     <script src="src/app.js"></script>
   </body>
