@@ -57,7 +57,9 @@ li {
   font-weight: 400;
   height: 20px;
   line-height: 20px;
-  text-transform: capitalize;
+}
+li::first-letter {
+text-transform: capitalize;
 }
 
 .windDetails {
