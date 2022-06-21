@@ -1,11 +1,26 @@
 function timeDate(timestamp) {
-    timestamp = 1655574598000;
-    let date = new Date(1655574598000);
-    let hour = date.getHours
-    let minutes = date.getMinutes;
-    let day = date.getDay;
+  let date = new Date(timestamp * 1000);
+  let hour = date.getHours();
+  if (hour < 10) {
+    hour = `0${hour}`;
+  }
+  let minutes = date.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
+  let day = date.getDay();
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+    ,
+  ];
 
-    return `${day} ${hour} ${minutes}`
+  return `${days[day]} ${hour}:${minutes}`;
 }
 
 function displayTemperature(response) {
@@ -16,8 +31,7 @@ function displayTemperature(response) {
   let pressureWord = document.querySelector("#pressure");
   let humidityWord = document.querySelector("#humidity");
   let windWord = document.querySelector("#wind");
-   let dateWord = document.querySelector("#date");
-   
+  let dateWord = document.querySelector("#date");
 
   temperatureNumber.innerHTML = Math.round(response.data.main.temp);
   cityWord.innerHTML = response.data.name;
@@ -25,8 +39,7 @@ function displayTemperature(response) {
   pressureWord.innerHTML = response.data.main.pressure;
   humidityWord.innerHTML = response.data.main.humidity;
   windWord.innerHTML = Math.round(response.data.wind.speed);
-  dateWord.innerHTML = timeDate(1655574598 * 1000);
-  
+  dateWord.innerHTML = `Last updated: ${timeDate(response.data.dt)}`;
 }
 
 let apiKey = "602c4f12fdc5707a356fb2740b6b3e24";
