@@ -34,7 +34,9 @@ function displayTemperature(response) {
   let dateWord = document.querySelector("#date");
   let image = document.querySelector("#image-weather");
 
-  temperatureNumber.innerHTML = Math.round(response.data.main.temp);
+  celciusTemp = response.data.main.temp;
+
+  temperatureNumber.innerHTML = Math.round(celciusTemp);
   cityWord.innerHTML = response.data.name;
   descriptionWord.innerHTML = response.data.weather[0].description;
   pressureWord.innerHTML = response.data.main.pressure;
@@ -60,5 +62,27 @@ function submit(event) {
   axios.get(apiUrl).then(displayTemperature);
 }
 
+function changeFahrenheit(event) {
+  event.preventDefault();
+
+  let fahrenheitElement = (celciusTemp * 9) / 5 + 32;
+  let temperatureElement = document.querySelector("#temperature");
+  temperatureElement.innerHTML = Math.round(fahrenheitElement);
+}
+
+function changeCelsius(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#temperature");
+  temperatureElement.innerHTML = Math.round(celciusTemp);
+}
+
+let celciusTemp = null;
+
 let form = document.querySelector("#search-place");
 form.addEventListener("submit", submit);
+
+let fahrenheitTemperature = document.querySelector("#fahrenheitTemp");
+fahrenheitTemperature.addEventListener("click", changeFahrenheit);
+
+let celsiusTemperature = document.querySelector("#celsiusTemp");
+celsiusTemperature.addEventListener("click", changeCelsius);
