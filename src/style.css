@@ -25,24 +25,24 @@ h1 {
 }
 
 .left-float img {
-    margin-right: 10px;
-    height: 70px;
-    width: 60px;
+  margin-right: 10px;
+  height: 70px;
+  width: 60px;
+  vertical-align: baseline;
 }
 
 .left-float strong {
-font-size: 48px;
-font-weight: 400;
-letter-spacing: normal;
-position: relative;
-    top: 5px;
+  font-size: 48px;
+  font-weight: 400;
+  letter-spacing: normal;
+  position: relative;
+  top: -20px;
 }
 
 .left-float .temp-sighn {
-    font-size: 16px;
-    position: relative;
-    top: -20px;
-
+  font-size: 16px;
+  position: relative;
+  top: -45px;
 }
 
 ul {
@@ -59,9 +59,9 @@ li {
   line-height: 20px;
 }
 li::first-letter {
-text-transform: capitalize;
+  text-transform: capitalize;
 }
 
 .windDetails {
-    text-transform: lowercase;
+  text-transform: lowercase;
 }

@@ -32,6 +32,7 @@ function displayTemperature(response) {
   let humidityWord = document.querySelector("#humidity");
   let windWord = document.querySelector("#wind");
   let dateWord = document.querySelector("#date");
+  let image = document.querySelector("#image-weather");
 
   temperatureNumber.innerHTML = Math.round(response.data.main.temp);
   cityWord.innerHTML = response.data.name;
@@ -40,6 +41,8 @@ function displayTemperature(response) {
   humidityWord.innerHTML = response.data.main.humidity;
   windWord.innerHTML = Math.round(response.data.wind.speed);
   dateWord.innerHTML = `Last updated: ${timeDate(response.data.dt)}`;
+  console.log(response.data.weather[0].icon);
+  image.src = `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`;
 }
 
 let apiKey = "602c4f12fdc5707a356fb2740b6b3e24";
