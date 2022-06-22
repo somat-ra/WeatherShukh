@@ -71,3 +71,28 @@ li::first-letter {
 .windDetails {
   text-transform: lowercase;
 }
+
+.weather-forcast-day {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 400;
+  padding-top: 7px;
+}
+
+.weather-forecast-image img {
+  width: 48px;
+  display: inline;
+  margin: 1px 4px 0;
+}
+
+.weather-forecast-temp {
+  color: #202124;
+  font-size: 13px;
+  font-weight: normal;
+  line-height: 15px;
+  text-align: center;
+}
+
+.weather-forecast-temp-min {
+  color: #70757a;
+}
