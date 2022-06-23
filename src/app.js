@@ -23,36 +23,68 @@ function timeDate(timestamp) {
   return `${days[day]} ${hour}:${minutes}`;
 }
 
-function displayForcast() {
+function getForcast(coordinates) {
+  let apiKey = "602c4f12fdc5707a356fb2740b6b3e24";
+  let apiUrl =
+    "https://api.openweathermap.org/data/2.5/onecall?lat=" +
+    coordinates.lat +
+    "&lon=" +
+    coordinates.lon +
+    "&appid=" +
+    apiKey +
+    "&units=metric";
+  axios.get(apiUrl).then(displayForcast);
+}
+
+function formatDay(timestamp) {
+  let date = new Date(timestamp);
+
+  let day = date.getDay();
+
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[day];
+}
+
+function displayForcast(response) {
+  let forecast = response.data.daily;
+
   let forecastColumn = document.querySelector("#weather-forecast");
 
   let forecastHTML = `<div class="row">`;
-  let days = ["Wed", "Thu", "Fri", "Sat", "Sun", "Mon"];
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
-              <div class="col-2">
-                <div class="weather-forcast-day">${day}</div>
-                <div class="weather-forecast-image">
-                  <img
-                    src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
-                    alt="weatherimage"
-                  />
-                </div>
-                <div class="weather-forecast-temp">
-                  <span class="weather-forecast-temp-max">20˚</span>
-                  <span class="weather-forecast-temp-min">13˚</span>
-                </div>
-              </div>
-           `;
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `
+        <div class="col-2">
+        <div class="weather-forcast-day">${formatDay(forecastDay.dt)}</div>
+        <div class="weather-forecast-image">
+        <img
+        src="http://openweathermap.org/img/wn/${
+          forecastDay.weather[0].icon
+        }@2x.png"
+        alt="weatherimage"
+        />
+        </div>
+        <div class="weather-forecast-temp">
+        <span class="weather-forecast-temp-max">${Math.round(
+          forecastDay.temp.max
+        )}˚</span>
+        <span class="weather-forecast-temp-min">${Math.round(
+          forecastDay.temp.min
+        )}˚</span>
+        </div>
+        </div>
+        `;
+    }
   });
   forecastHTML = forecastHTML + `</div>`;
+
   forecastColumn.innerHTML = forecastHTML;
 }
 
 function displayTemperature(response) {
-  console.log(response.data);
   let temperatureNumber = document.querySelector("#temperature");
   let cityWord = document.querySelector("#city");
   let descriptionWord = document.querySelector("#description");
@@ -73,22 +105,28 @@ function displayTemperature(response) {
   dateWord.innerHTML = `Last updated: ${timeDate(response.data.dt)}`;
   image.src = `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`;
   image.alt = response.data.weather[0].description;
+
+  getForcast(response.data.coord);
 }
 
-function submit(event) {
-  event.preventDefault();
-  let cityElement = document.querySelector("#cityInput");
-  console.log(cityElement);
-
+function search(city) {
   let apiKey = "602c4f12fdc5707a356fb2740b6b3e24";
   let apiUrl =
     "https://api.openweathermap.org/data/2.5/weather?q=" +
-    cityElement.value +
+    city +
     "&appid=" +
     apiKey +
     "&units=metric";
   axios.get(apiUrl).then(displayTemperature);
 }
+
+function submit(event) {
+  event.preventDefault();
+  let cityElement = document.querySelector("#cityInput");
+  search(cityElement.value);
+}
+
+search("Kyiv");
 
 function changeFahrenheit(event) {
   event.preventDefault();
@@ -118,5 +156,3 @@ fahrenheitTemperature.addEventListener("click", changeFahrenheit);
 
 let celsiusTemperature = document.querySelector("#celsiusTemp");
 celsiusTemperature.addEventListener("click", changeCelsius);
-
-displayForcast();
