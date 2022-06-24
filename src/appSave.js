@@ -117,13 +117,8 @@ function search(city) {
     "&appid=" +
     apiKey +
     "&units=metric";
-  axios.get(apiUrl).then(displayTemperature);
 
-  axios.get(apiUrl).catch(function (error) {
-    if (error.response) {
-      alert("Enter a valid city name");
-    }
-  });
+  axios.get(apiUrl).then(displayTemperature);
 }
 
 function submit(event) {
@@ -163,20 +158,3 @@ fahrenheitTemperature.addEventListener("click", changeFahrenheit);
 
 let celsiusTemperature = document.querySelector("#celsiusTemp");
 celsiusTemperature.addEventListener("click", changeCelsius);
-
-const forms = document.querySelectorAll(".needs-validation");
-
-Array.from(forms).forEach((form) => {
-  form.addEventListener(
-    "submit",
-    (event) => {
-      if (!form.checkValidity()) {
-        event.preventDefault();
-        event.stopPropagation();
-      }
-
-      form.classList.add("was-validated");
-    },
-    false
-  );
-});

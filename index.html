@@ -19,19 +19,26 @@
     <div class="container">
       <div class="whole-page">
         <div class="weather-body">
-          <form id="search-place" class="mb-3">
+          <form id="search-place" class="mb-3 needs-validation" novalidate >
             <div class="row">
-              <div class="col-9">
+              <div class="col-9 has-validation">
+    <div class="input-group has-validation">
                 <input
                   type="search"
                   placeholder="Type a city name"
                   class="form-control"
                   id="cityInput"
+                  required 
                 />
+  <div class="invalid-feedback" id="invalid-feedback">
+        Please enter a city
+      </div>
+    </div>
               </div>
               <div class="col-3">
                 <input type="submit" value="Search" class="btn btn-success" />
               </div>
+
             </div>
           </form>
 
